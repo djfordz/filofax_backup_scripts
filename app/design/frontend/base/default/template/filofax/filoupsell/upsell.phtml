@@ -1,0 +1,41 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_PromoBannersLite
+ */
+?>
+<?php /** @var Amasty_PromoBannersLite_Block_Banner $this */?>
+<?php /** @var Mage_SalesRule_Model_Rule $rule */?>
+
+<?php $validRules = $this->getValidRules(); 
+if (Mage::helper('filoupsell')->isEnabled() && isset($validRules)): ?>
+    <?php foreach($validRules as $rule) :?>
+        <?php if ($this->isUpsellBanner($rule)): ?>
+            <div class="product-options">
+                <?php if ($this->getUpsellData('_banner_description', $rule)): ?>
+<?php $this->getRelatedItems(); ?>
+                    <div class="upsell-desc">
+                        <input type="checkbox" class="checkbox upsell-checkbox" id="upsell-checkbox" name="related_products[]" value enabled />
+                        <?php echo Mage::helper('cms')->getPageTemplateProcessor()
+                        ->filter($this->getUpsellData('_banner_description', $rule)); ?>
+                    </div>
+                    <?php $img = $this->getImage($rule); ?>
+                    <?php if ($img) :?>
+                        <p>
+                            <a href="<?php echo $this->getLink($rule);?>"
+                               title="<?php echo $this->escapeHtml($this->getUpsellData('_banner_hover_text', $rule)) ?>">
+                                <img src="<?php echo $img;?>"
+                                     alt="<?php echo $this->escapeHtml($this->getUpsellData('_banner_alt', $rule)) ?>"
+                                     title="<?php echo $this->escapeHtml(
+                                         $this->getUpsellData('_banner_hover_text', $rule)) ?>" />
+                            </a>
+                        </p>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <div style="clear: both;"></div>
+            </div>
+        <?php endif;?>
+    <?php endforeach; ?>
+<?php endif; ?>
+
