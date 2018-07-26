@@ -33,6 +33,6 @@
 .yearly-upsells.disabled {
     opacity: 0.6;
 }
-.upsell-desc h1, h2, h3, h4, h5, h6, p, li {
+.yearly-upsells .upsell-desc h1, .yearly-upsells .upsell-desc h2, .yearly-upsells .upsell-desc h3, .yearly-upsells .upsell-desc h4, .yearly-upsells .upsell-desc h5, .yearly-upsells .upsell-desc h6, .yearly-upsells .upsell-desc p, .yearly-upsells .upsell-desc li {
     display: inline-block;
 }
