@@ -1,0 +1,39 @@
+<?php
+$collection = $this->getProductCollection(51);
+?>
+<div class="filofax-collections">
+<?php if ($collection->count() > 0): ?>
+     <ul class="filofax-collections-list">
+        <?php foreach ($collection as $category): ?>  
+        <?php $resizedImageUrl = $this->resizeImageUrl($category->getCollectionsImage()); ?>          
+            <li class="filofax-collections-item">
+                <a class="filofax-collections-link" href="<?php echo $category->getUrl(); ?>" title="<?php echo $category->getName(); ?>">
+                    <img class="filofax-collections-img" src="<?php echo $resizedImageUrl; ?>"  alt="<?php echo $category->getName(); ?>" />
+                    <div class="filofax-collections-overlay filofax-collections-overlay-hide">
+                    <h1><?php echo $category->getName(); ?></h1>
+                    </div>
+                </a>
+            </li>
+        <?php endforeach; ?>                     
+    </ul>
+<?php endif; ?>
+<script>
+(function($) {
+    $('.filofax-collections-item').each(function(index) {
+        $(this).bind({
+            mouseenter: function() {
+                var overlay = $(this).find('.filofax-collections-overlay');
+                var position = $(this).offset();
+                var parentPosition = $(this.parentElement).offset();
+                $(overlay).css({display: 'block', position: 'absolute', top: position.top - 155, left: position.left - parentPosition.left});
+            },
+            mouseleave: function() {
+                var overlay = $(this).find('.filofax-collections-overlay');
+                $(overlay).css({display: 'none'});
+
+            } 
+        });
+    });
+})(jQuery);
+</script>
+</div>
