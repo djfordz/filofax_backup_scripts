@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<layout>
+    <adminhtml_promo_quote_edit>
+        <reference name="promo_quote_edit_tabs">
+            <block type="filoupsell/adminhtml_promo_quote_edit_tab_upsell"
+                   name="filoupsell_product_page_upsell" />
+            <action method="addTab">
+                <name>filoupsell_product_page_upsell</name>
+                <block>filoupsell_product_page_upsell</block>
+            </action>
+        </reference>
+        <update handle="editor" />
+    </adminhtml_promo_quote_edit>
+</layout>

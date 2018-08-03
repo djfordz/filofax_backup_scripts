@@ -4,7 +4,7 @@ class Filofax_Upsells_Model_Observer
 {
     public function saveAfter($observer)
     {
-        if (Mage::helper('ambannerslite')->isEnable()) {
+        if (Mage::helper('filoupsell')->isEnabled()) {
             $this->_saveUpsellInfo($observer->getRule());
         }
     }

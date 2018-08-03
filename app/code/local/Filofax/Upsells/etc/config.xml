@@ -10,11 +10,6 @@
             <filoupsell>
                 <class>Filofax_Upsells_Block</class>
             </filoupsell>
-            <ambannerslite>
-                <rewrite>
-                    <adminhtml_promo_quote_edit_tab_bannerNew>Filofax_Upsells_Block_Adminhtml_Promo_Quote_Edit_Tab_BannerNew</adminhtml_promo_quote_edit_tab_bannerNew>
-                </rewrite>
-            </ambannerslite>
             <catalog>
                 <rewrite>
                     <product_view_type_configurable>Filofax_Upsells_Block_Catalog_Product_View_Type_Configurable</product_view_type_configurable>
@@ -34,11 +29,6 @@
                     </upsells>
                 </entities>
             </filoupsell_mysql4>
-            <ambannerslite>
-                <rewrite>
-                    <banners>Filofax_Upsells_Model_Banners</banners>
-                </rewrite>
-            </ambannerslite>
         </models>
         <resources>
             <filoupsell_setup>
@@ -74,6 +64,15 @@
                 </filoupsell>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <Filofax_Upsells>
+                    <files>
+                        <default>Filofax_Upsells.csv</default>
+                    </files>
+                </Filofax_Upsells>
+            </modules>
+        </translate>
     </frontend>
     <adminhtml>
         <events>
@@ -86,6 +85,22 @@
                     </Filofax_Upsells_Model_Observer>
                 </observers>
             </salesrule_rule_save_after>
+            <adminhtml_block_html_before>
+                <observers>
+                    <Filofax_Upsells_Model_Observer>
+                        <type>singleton</type>
+                        <class>Filofax_Upsells_Model_Observer</class>
+                        <method>addEnctypeToForm</method>
+                    </Filofax_Upsells_Model_Observer>
+                </observers>
+            </adminhtml_block_html_before>
         </events>
+        <layout>
+            <updates>
+                <filoupsell>
+                    <file>filofax/filoupsell/filoupsell.xml</file>
+                </filoupsell>
+            </updates>
+        </layout>
     </adminhtml>
 </config>

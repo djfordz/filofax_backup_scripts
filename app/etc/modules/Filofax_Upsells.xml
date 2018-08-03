@@ -7,9 +7,6 @@
             <depends>
                 <Amasty_Conf />
                 <Amasty_PromoBannersLite />
-                <Amasty_Rules />
-                <Amasty_RulesPro />
-                <Amasty_RuleTimeConditions />
             </depends>
         </Filofax_Upsells>
     </modules>
