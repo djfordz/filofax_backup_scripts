@@ -1,0 +1,64 @@
+<?php
+
+?>
+
+<?php
+$_htmlId = "filovid";
+?>
+<div class="entry-edit">
+
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend">Media Gallery Videos</h4>
+    </div>
+    <div class="fieldset fieldset-wide">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="form-list">
+                <tbody>
+                    <tr>
+                        <td class="label"><label for="price">Videos</label></td>
+                        <td class="grid tier">
+                            <table cellspacing="0" class="data border" id="videos_table">
+                                <col width="130" />
+                                <col width="235" />
+                                <col />
+                                <thead>
+                                    <tr class="headings">
+                                        <th><?php echo Mage::helper('filovid')->__('Video Type') ?></th>
+                                        <th><?php echo Mage::helper('filovid')->__('Video ID') ?></th>
+                                        <th class="last"><?php echo Mage::helper('filovid')->__('Action') ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="filovid_videos_container">
+                                    <?php if($this->hasVideos()): ?>
+                                        <?php /*Mage::log(print_r($videos, true), Zend_Log::DEBUG, 'DS.log');*/ ?>
+                                        <?php echo $this->getVideos(); ?>
+                                    <?php endif; ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="a-right"><button style="" onclick="return addVideo()" class="scalable add" type="button" title="Add Tier" id="test"><span><span><span>Add Video</span></span></span></button></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var container = document.getElementById("filovid_videos_container");
+    var index = container.getElementsByTagName('tr').length - 1;
+    function addVideo() {
+        index++;
+        var tr = document.createElement("tr");
+        tr.innerHTML = '<td><select id="videos_' + index + '_type" name="videos[' + index + '][type]" class="input-text required-entry"><option value="youtube">Youtube</option></select></td><td class="nobr"><input type="text" id="videos_' + index + '_video_id" value="" name="videos[' + index + '][video_id]" class="input-text required-entry"></td><td class="last"><button onclick="removeVideo(this);" id="videos_' + index + '_delete_button" class="scalable delete icon-btn delete-product-option" type="button" title="Delete Tier"><span><span><span>Delete</span></span></span></button></td>';
+        container.appendChild(tr);
+    }
+
+    var removeVideo = function (param) {
+        var video_entry = param.parentNode.parentNode;
+        container.removeChild(video_entry);
+    };
+</script>
